@@ -146,6 +146,10 @@ enum AppSettings<T> {
     'chat.fluffy.color_scheme_surface_container',
     0x40FFFFFF,
   ),
+  colorSchemeSurfaceContainerDark<int>(
+    'chat.fluffy.color_scheme_surface_container_dark',
+    0x80272e5a,
+  ),
   colorSchemeSurfaceContainerLow<int>(
     'chat.fluffy.color_scheme_surface_container_low',
     0x40FFFFFF,

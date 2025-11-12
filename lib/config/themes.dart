@@ -63,7 +63,7 @@ abstract class FluffyThemes {
       surfaceBright: brightness == Brightness.light ? Color(AppSettings.colorSchemeSurfaceBright.value) : Color(AppSettings.colorSchemeSurfaceBrightDark.value),
       surfaceDim: Color(AppSettings.colorSchemeSurfaceDim.value),
       onSurface: brightness == Brightness.light ? Color(AppSettings.colorSchemeOnSurface.value) : Color(AppSettings.colorSchemeOnSurfaceDark.value),
-      surfaceContainer: Color(AppSettings.colorSchemeSurfaceContainer.value),
+      surfaceContainer: brightness == Brightness.light ? Color(AppSettings.colorSchemeSurfaceContainer.value) : Color(AppSettings.colorSchemeSurfaceContainerDark.value),
       surfaceContainerHigh: brightness == Brightness.light ? Color(AppSettings.colorSchemeSurfaceContainerHigh.value) : Color(AppSettings.colorSchemeSurfaceContainerHighDark.value),
       surfaceContainerHighest: Color(AppSettings.colorSchemeSurfaceContainerHighest.value),
       surfaceContainerLow: Color(AppSettings.colorSchemeSurfaceContainerLow.value),

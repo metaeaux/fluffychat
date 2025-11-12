@@ -109,10 +109,10 @@ class Avatar extends StatelessWidget {
                 return const SizedBox.shrink();
               }
               final dotColor = presence.presence.isOnline
-                  ? Colors.green
+                  ? Color(0xFF7DFFB8)
                   : presence.presence.isUnavailable
-                      ? Colors.orange
-                      : Colors.grey;
+                      ? Color(0xFFFFD890)
+                      : Color(0xFF3E478E);
               return Positioned(
                 bottom: -3,
                 right: -3,
