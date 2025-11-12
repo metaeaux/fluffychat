@@ -158,13 +158,13 @@ enum AppSettings<T> {
     'chat.fluffy.color_scheme_surface_container_high',
     0x40FFFFFF,
   ),
+  colorSchemeSurfaceContainerHighDark<int>(
+    'chat.fluffy.color_scheme_surface_container_high_dark',
+    0x80272e5a,
+  ),
   colorSchemeSurfaceContainerHighest<int>(
     'chat.fluffy.color_scheme_surface_container_highest',
     0x40FFFFFF,
-  ),
-  colorSchemeSurfaceContainerHighestDark<int>(
-    'chat.fluffy.color_scheme_surface_container_highest_dark',
-    0x80272e5a,
   ),
   enableSoftLogout<bool>('chat.fluffy.enable_soft_logout', false);
 
