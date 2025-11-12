@@ -116,7 +116,7 @@ class ChatListItem extends StatelessWidget {
                                 ? room.isSpace
                                     ? BorderSide(
                                         width: 1,
-                                        color: theme.dividerColor,
+                                        color: theme.colorScheme.surface,
                                       )
                                     : null
                                 : BorderSide(

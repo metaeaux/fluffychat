@@ -56,9 +56,7 @@ class Avatar extends StatelessWidget {
           width: size,
           height: size,
           child: Material(
-            color: theme.brightness == Brightness.light
-                ? Colors.white
-                : Colors.black,
+            color: Colors.transparent,
             shape: RoundedRectangleBorder(
               borderRadius: borderRadius,
               side: border ?? BorderSide.none,

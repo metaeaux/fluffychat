@@ -1,0 +1,12 @@
+diff --git a/Dockerfile b/Dockerfile
+index 39505aadf..cdf3d18d0 100644
+--- a/Dockerfile
++++ b/Dockerfile
+@@ -16,6 +16,6 @@ COPY config.* /app/
+ RUN flutter pub get
+ RUN flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps
+ 
+-FROM docker.io/nginx:alpine
++FROM --platform=linux/arm64 arm64v8/nginx:alpine
+ RUN rm -rf /usr/share/nginx/html
+ COPY --from=builder /app/build/web /usr/share/nginx/html
