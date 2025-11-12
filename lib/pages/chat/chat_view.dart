@@ -205,11 +205,7 @@ class ChatView extends StatelessWidget {
                       ? null
                       : theme.colorScheme.onTertiaryContainer,
                 ),
-                backgroundColor: controller.selectedEvents.isEmpty
-                    ? controller.activeThreadId != null
-                        ? theme.colorScheme.secondaryContainer
-                        : null
-                    : theme.colorScheme.tertiaryContainer,
+                backgroundColor: Colors.transparent,
                 automaticallyImplyLeading: false,
                 leading: controller.selectMode
                     ? IconButton(
@@ -307,7 +303,7 @@ class ChatView extends StatelessWidget {
                         onPressed: controller.scrollDown,
                         heroTag: null,
                         mini: true,
-                        backgroundColor: theme.colorScheme.surface,
+                        backgroundColor: theme.colorScheme.surfaceBright,
                         foregroundColor: theme.colorScheme.onSurface,
                         child: const Icon(Icons.arrow_downward_outlined),
                       ),

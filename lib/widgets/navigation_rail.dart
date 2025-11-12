@@ -67,7 +67,7 @@ class SpacesNavigationRail extends StatelessWidget {
                             ),
                             selectedIcon: const Padding(
                               padding: EdgeInsets.all(10.0),
-                              child: Icon(Icons.forum),
+                              child: Icon(Icons.forum, color: Color(0xff3E478E)),
                             ),
                             toolTip: L10n.of(context).chats,
                             unreadBadgeFilter: (room) => true,
@@ -122,7 +122,7 @@ class SpacesNavigationRail extends StatelessWidget {
                     ),
                     selectedIcon: const Padding(
                       padding: EdgeInsets.all(10.0),
-                      child: Icon(Icons.settings),
+                      child: Icon(Icons.settings, color: Color(0xff3E478E)),
                     ),
                     toolTip: L10n.of(context).settings,
                   ),

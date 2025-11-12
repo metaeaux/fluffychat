@@ -1,0 +1,494 @@
+diff --git a/lib/config/app_config.dart b/lib/config/app_config.dart
+index 4f5d42c51..6cf072b05 100644
+--- a/lib/config/app_config.dart
++++ b/lib/config/app_config.dart
+@@ -2,9 +2,9 @@ import 'dart:ui';
+ 
+ abstract class AppConfig {
+   // Const and final configuration values (immutable)
+-  static const Color primaryColor = Color(0xFF5625BA);
+-  static const Color primaryColorLight = Color(0xFFCCBDEA);
+-  static const Color secondaryColor = Color(0xFF41a2bc);
++  static const Color primaryColor = Color(0xFFD2BBFA);
++  static const Color primaryColorLight = Color(0xFFD2BBFA);
++  static const Color secondaryColor = Color(0xFFD2BBFA);
+ 
+   static const Color chatColor = primaryColor;
+   static const double messageFontSize = 16.0;
+diff --git a/lib/config/setting_keys.dart b/lib/config/setting_keys.dart
+index 926cdadd2..c0ba404e1 100644
+--- a/lib/config/setting_keys.dart
++++ b/lib/config/setting_keys.dart
+@@ -58,6 +58,110 @@ enum AppSettings<T> {
+     'chat.fluffy.color_scheme_seed',
+     0xFF5625BA,
+   ),
++  colorSchemePrimary<int>(
++    'chat.fluffy.color_scheme_primary',
++    0xFFFF9DFB,
++  ),
++  colorSchemeOnPrimary<int>(
++    'chat.fluffy.color_scheme_on_primary',
++    0xFF3E478E,
++  ),
++  colorSchemePrimaryContainer<int>(
++    'chat.fluffy.color_scheme_primary_container',
++    0xFFFF9DFB,
++  ),
++  colorSchemeOnPrimaryContainer<int>(
++    'chat.fluffy.color_scheme_on_primary_container',
++    0xFFFF9DFB,
++  ),
++  colorSchemeOnPrimaryContainerDark<int>(
++    'chat.fluffy.color_scheme_on_primary_container_dark',
++    0xFF3E478E,
++  ),
++  colorSchemeSecondary<int>(
++    'chat.fluffy.color_scheme_secondary',
++    0xFFD2BBFA,
++  ),
++  colorSchemeOnSecondary<int>(
++    'chat.fluffy.color_scheme_on_secondary',
++    0xFF3E478E,
++  ),
++  colorSchemeSecondaryContainer<int>(
++    'chat.fluffy.color_scheme_secondary_container',
++    0x40d5befd,
++  ),
++  colorSchemeOnSecondaryContainer<int>(
++    'chat.fluffy.color_scheme_on_secondary_container',
++    0xFF3E478E,
++  ),
++  colorSchemeOnSecondaryContainerDark<int>(
++    'chat.fluffy.color_scheme_on_secondary_container_dark',
++    0xFFD2BBFA,
++  ),
++  colorSchemeTertiary<int>(
++    'chat.fluffy.color_scheme_tertiary',
++    0xFFD2BBFA,
++  ),
++  colorSchemeOnTertiary<int>(
++    'chat.fluffy.color_scheme_on_tertiary',
++    0xFF3E478E,
++  ),
++  colorSchemeTertiaryContainer<int>(
++    'chat.fluffy.color_scheme_tertiary_container',
++    0x40272e5a,
++  ),
++  colorSchemeOnTertiaryContainer<int>(
++    'chat.fluffy.color_scheme_on_tertiary_container',
++    0x40272e5a,
++  ),
++  colorSchemeSurface<int>(
++    'chat.fluffy.color_scheme_surface',
++    0x00FFFFFF,
++  ),
++  colorSchemeSurfaceDark<int>(
++    'chat.fluffy.color_scheme_surface_dark',
++    0x001F2345,
++  ),
++  colorSchemeOnSurface<int>(
++    'chat.fluffy.color_scheme_on_surface',
++    0xFF3E478E,
++  ),
++  colorSchemeOnSurfaceDark<int>(
++    'chat.fluffy.color_scheme_on_surface_dark',
++    0xFFFFFFFF,
++  ),
++  colorSchemeSurfaceBright<int>(
++    'chat.fluffy.color_scheme_surface_bright',
++    0xFFFFFFFF,
++  ),
++  colorSchemeSurfaceBrightDark<int>(
++    'chat.fluffy.color_scheme_surface_bright_dark',
++    0xFF252B57,
++  ),
++  colorSchemeSurfaceDim<int>(
++    'chat.fluffy.color_scheme_surface_dim',
++    0x001F2345,
++  ),
++  colorSchemeSurfaceContainer<int>(
++    'chat.fluffy.color_scheme_surface_container',
++    0x40FFFFFF,
++  ),
++  colorSchemeSurfaceContainerLow<int>(
++    'chat.fluffy.color_scheme_surface_container_low',
++    0x40FFFFFF,
++  ),
++  colorSchemeSurfaceContainerLowest<int>(
++    'chat.fluffy.color_scheme_surface_container_lowest',
++    0x40FFFFFF,
++  ),
++  colorSchemeSurfaceContainerHigh<int>(
++    'chat.fluffy.color_scheme_surface_container_high',
++    0x40FFFFFF,
++  ),
++  colorSchemeSurfaceContainerHighest<int>(
++    'chat.fluffy.color_scheme_surface_container_highest',
++    0x40FFFFFF,
++  ),
+   enableSoftLogout<bool>('chat.fluffy.enable_soft_logout', false);
+ 
+   final String key;
+diff --git a/lib/config/themes.dart b/lib/config/themes.dart
+index b409dc247..a329fa634 100644
+--- a/lib/config/themes.dart
++++ b/lib/config/themes.dart
+@@ -46,7 +46,28 @@ abstract class FluffyThemes {
+   ]) {
+     final colorScheme = ColorScheme.fromSeed(
+       brightness: brightness,
+-      seedColor: seed ?? Color(AppSettings.colorSchemeSeedInt.value),
++      seedColor: Color(AppSettings.colorSchemeSeedInt.value),
++      primary: Color(AppSettings.colorSchemePrimary.value),
++      onPrimary: Color(AppSettings.colorSchemeOnPrimary.value),
++      primaryContainer: Color(AppSettings.colorSchemePrimaryContainer.value),
++      onPrimaryContainer: brightness == Brightness.light ? Color(AppSettings.colorSchemeOnPrimaryContainer.value) : Color(AppSettings.colorSchemeOnPrimaryContainerDark.value),
++      secondary: Color(AppSettings.colorSchemeSecondary.value),
++      onSecondary: Color(AppSettings.colorSchemeOnSecondary.value),
++      secondaryContainer: Color(AppSettings.colorSchemeSecondaryContainer.value),
++      onSecondaryContainer: brightness == Brightness.light ? Color(AppSettings.colorSchemeOnSecondaryContainer.value) : Color(AppSettings.colorSchemeOnSecondaryContainerDark.value),
++      tertiary: Color(AppSettings.colorSchemeTertiary.value),
++      onTertiary: Color(AppSettings.colorSchemeOnTertiary.value),
++      tertiaryContainer: Color(AppSettings.colorSchemeTertiaryContainer.value),
++      onTertiaryContainer: Color(AppSettings.colorSchemeOnTertiaryContainer.value),
++      surface: brightness == Brightness.light ? Color(AppSettings.colorSchemeSurface.value) : Color(AppSettings.colorSchemeSurfaceDark.value),
++      surfaceBright: brightness == Brightness.light ? Color(AppSettings.colorSchemeSurfaceBright.value) : Color(AppSettings.colorSchemeSurfaceBrightDark.value),
++      surfaceDim: Color(AppSettings.colorSchemeSurfaceDim.value),
++      onSurface: brightness == Brightness.light ? Color(AppSettings.colorSchemeOnSurface.value) : Color(AppSettings.colorSchemeOnSurfaceDark.value),
++      surfaceContainer: Color(AppSettings.colorSchemeSurfaceContainer.value),
++      surfaceContainerHigh: Color(AppSettings.colorSchemeSurfaceContainerHigh.value),
++      surfaceContainerHighest: Color(AppSettings.colorSchemeSurfaceContainerHighest.value),
++      surfaceContainerLow: Color(AppSettings.colorSchemeSurfaceContainerLow.value),
++      surfaceContainerLowest: Color(AppSettings.colorSchemeSurfaceContainerLowest.value),
+     );
+     final isColumnMode = FluffyThemes.isColumnMode(context);
+     return ThemeData(
+@@ -55,10 +76,10 @@ abstract class FluffyThemes {
+       brightness: brightness,
+       colorScheme: colorScheme,
+       dividerColor: brightness == Brightness.dark
+-          ? colorScheme.surfaceContainerHighest
+-          : colorScheme.surfaceContainer,
++          ? Color(0xFFD2BBFA).withAlpha(64)
++          : Color(0xFFD2BBFA),
+       popupMenuTheme: PopupMenuThemeData(
+-        color: colorScheme.surfaceContainerLow,
++        color: colorScheme.surfaceBright,
+         iconColor: colorScheme.onSurface,
+         textStyle: TextStyle(color: colorScheme.onSurface),
+         shape: RoundedRectangleBorder(
+@@ -92,7 +113,7 @@ abstract class FluffyThemes {
+       appBarTheme: AppBarTheme(
+         toolbarHeight: isColumnMode ? 72 : 56,
+         shadowColor:
+-            isColumnMode ? colorScheme.surfaceContainer.withAlpha(128) : null,
++            isColumnMode ? colorScheme.surfaceContainer.withAlpha(0) : null,
+         surfaceTintColor: isColumnMode ? colorScheme.surface : null,
+         backgroundColor: isColumnMode ? colorScheme.surface : null,
+         actionsPadding:
+@@ -148,17 +169,9 @@ extension on Brightness {
+ }
+ 
+ extension BubbleColorTheme on ThemeData {
+-  Color get bubbleColor => brightness == Brightness.light
+-      ? colorScheme.primary
+-      : colorScheme.primaryContainer;
++  Color get bubbleColor => colorScheme.primary;
+ 
+-  Color get onBubbleColor => brightness == Brightness.light
+-      ? colorScheme.onPrimary
+-      : colorScheme.onPrimaryContainer;
++  Color get onBubbleColor => colorScheme.onPrimary;
+ 
+-  Color get secondaryBubbleColor => HSLColor.fromColor(
+-        brightness == Brightness.light
+-            ? colorScheme.tertiary
+-            : colorScheme.tertiaryContainer,
+-      ).withSaturation(0.5).toColor();
++  Color get secondaryBubbleColor => colorScheme.tertiary;
+ }
+diff --git a/lib/pages/chat/chat_view.dart b/lib/pages/chat/chat_view.dart
+index e61cb29d1..5c2797eb3 100644
+--- a/lib/pages/chat/chat_view.dart
++++ b/lib/pages/chat/chat_view.dart
+@@ -205,11 +205,7 @@ class ChatView extends StatelessWidget {
+                       ? null
+                       : theme.colorScheme.onTertiaryContainer,
+                 ),
+-                backgroundColor: controller.selectedEvents.isEmpty
+-                    ? controller.activeThreadId != null
+-                        ? theme.colorScheme.secondaryContainer
+-                        : null
+-                    : theme.colorScheme.tertiaryContainer,
++                backgroundColor: Colors.transparent,
+                 automaticallyImplyLeading: false,
+                 leading: controller.selectMode
+                     ? IconButton(
+@@ -307,7 +303,7 @@ class ChatView extends StatelessWidget {
+                         onPressed: controller.scrollDown,
+                         heroTag: null,
+                         mini: true,
+-                        backgroundColor: theme.colorScheme.surface,
++                        backgroundColor: theme.colorScheme.surfaceBright,
+                         foregroundColor: theme.colorScheme.onSurface,
+                         child: const Icon(Icons.arrow_downward_outlined),
+                       ),
+diff --git a/lib/pages/chat/events/message.dart b/lib/pages/chat/events/message.dart
+index c55b1109f..ebe449deb 100644
+--- a/lib/pages/chat/events/message.dart
++++ b/lib/pages/chat/events/message.dart
+@@ -244,7 +244,7 @@ class Message extends StatelessWidget {
+                       child: Material(
+                         borderRadius:
+                             BorderRadius.circular(AppConfig.borderRadius * 2),
+-                        color: theme.colorScheme.surface.withAlpha(128),
++                        color: theme.colorScheme.surface.withAlpha(24),
+                         child: Padding(
+                           padding: const EdgeInsets.symmetric(
+                             horizontal: 8.0,
+@@ -658,6 +658,7 @@ class Message extends StatelessWidget {
+                                                       4.0,
+                                                     ),
+                                                     child: Material(
++						      color: theme.colorScheme.surfaceBright,
+                                                       elevation: 4,
+                                                       borderRadius:
+                                                           BorderRadius.circular(
+@@ -665,7 +666,7 @@ class Message extends StatelessWidget {
+                                                       ),
+                                                       shadowColor: theme
+                                                           .colorScheme.surface
+-                                                          .withAlpha(128),
++                                                          .withAlpha(24),
+                                                       child:
+                                                           SingleChildScrollView(
+                                                         scrollDirection:
+@@ -931,7 +932,7 @@ class Message extends StatelessWidget {
+                       decoration: BoxDecoration(
+                         borderRadius:
+                             BorderRadius.circular(AppConfig.borderRadius / 3),
+-                        color: theme.colorScheme.surface.withAlpha(128),
++                        color: theme.colorScheme.surface.withAlpha(24),
+                       ),
+                       child: Text(
+                         L10n.of(context).readUpToHere,
+diff --git a/lib/pages/chat/events/state_message.dart b/lib/pages/chat/events/state_message.dart
+index 9ef9d4e7a..cee10f259 100644
+--- a/lib/pages/chat/events/state_message.dart
++++ b/lib/pages/chat/events/state_message.dart
+@@ -34,7 +34,7 @@ class StateMessage extends StatelessWidget {
+                 child: Padding(
+                   padding: const EdgeInsets.all(4),
+                   child: Material(
+-                    color: theme.colorScheme.surface.withAlpha(128),
++                    color: theme.colorScheme.surface.withAlpha(24),
+                     borderRadius:
+                         BorderRadius.circular(AppConfig.borderRadius / 3),
+                     child: Padding(
+diff --git a/lib/pages/chat_encryption_settings/chat_encryption_settings_view.dart b/lib/pages/chat_encryption_settings/chat_encryption_settings_view.dart
+index 754178c25..ee6b8e205 100644
+--- a/lib/pages/chat_encryption_settings/chat_encryption_settings_view.dart
++++ b/lib/pages/chat_encryption_settings/chat_encryption_settings_view.dart
+@@ -150,10 +150,10 @@ class ChatEncryptionSettingsView extends StatelessWidget {
+                                             : L10n.of(context).unverified,
+                                     style: TextStyle(
+                                       color: deviceKeys[i].verified
+-                                          ? Colors.green
++                                          ? Color(0xff7DFFB8)
+                                           : deviceKeys[i].blocked
+-                                              ? Colors.red
+-                                              : Colors.orange,
++                                              ? Color(0xffFF8F6C)
++                                              : Color(0xffFFD890),
+                                     ),
+                                   ),
+                                   const Text(' | ID: '),
+diff --git a/lib/pages/chat_list/chat_list_header.dart b/lib/pages/chat_list/chat_list_header.dart
+index ca2bfcbe2..a39ba5006 100644
+--- a/lib/pages/chat_list/chat_list_header.dart
++++ b/lib/pages/chat_list/chat_list_header.dart
+@@ -61,7 +61,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
+               hintStyle: TextStyle(
+                 color: status.error != null
+                     ? Colors.orange
+-                    : theme.colorScheme.onPrimaryContainer,
++                    : theme.colorScheme.onSecondaryContainer,
+                 fontWeight: FontWeight.normal,
+               ),
+               prefixIcon: hide
+@@ -70,13 +70,13 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
+                           tooltip: L10n.of(context).cancel,
+                           icon: const Icon(Icons.close_outlined),
+                           onPressed: controller.cancelSearch,
+-                          color: theme.colorScheme.onPrimaryContainer,
++                          color: theme.colorScheme.onSecondaryContainer,
+                         )
+                       : IconButton(
+                           onPressed: controller.startSearch,
+                           icon: Icon(
+                             Icons.search_outlined,
+-                            color: theme.colorScheme.onPrimaryContainer,
++                            color: theme.colorScheme.onSecondaryContainer,
+                           ),
+                         )
+                   : Container(
+diff --git a/lib/pages/chat_list/chat_list_view.dart b/lib/pages/chat_list/chat_list_view.dart
+index 1b04bed8c..f3a560c92 100644
+--- a/lib/pages/chat_list/chat_list_view.dart
++++ b/lib/pages/chat_list/chat_list_view.dart
+@@ -16,6 +16,7 @@ class ChatListView extends StatelessWidget {
+ 
+   @override
+   Widget build(BuildContext context) {
++    final theme = Theme.of(context);
+     return PopScope(
+       canPop: !controller.isSearchMode && controller.activeSpaceId == null,
+       onPopInvokedWithResult: (pop, _) {
+@@ -53,6 +54,7 @@ class ChatListView extends StatelessWidget {
+                 floatingActionButton: !controller.isSearchMode &&
+                         controller.activeSpaceId == null
+                     ? FloatingActionButton.extended(
++			foregroundColor: theme.colorScheme.onPrimaryContainer,
+                         onPressed: () => context.go('/rooms/newprivatechat'),
+                         icon: const Icon(Icons.add_outlined),
+                         label: Text(
+diff --git a/lib/pages/settings_style/settings_style.dart b/lib/pages/settings_style/settings_style.dart
+index 3ec628c53..afc12aba9 100644
+--- a/lib/pages/settings_style/settings_style.dart
++++ b/lib/pages/settings_style/settings_style.dart
+@@ -118,23 +118,23 @@ class SettingsStyleController extends State<SettingsStyle> {
+   static final List<Color?> customColors = [
+     null,
+     AppConfig.chatColor,
+-    Colors.indigo,
+-    Colors.blue,
+-    Colors.blueAccent,
+-    Colors.teal,
+-    Colors.tealAccent,
+-    Colors.green,
+-    Colors.greenAccent,
+-    Colors.yellow,
+-    Colors.yellowAccent,
+-    Colors.orange,
+-    Colors.orangeAccent,
+-    Colors.red,
+-    Colors.redAccent,
+-    Colors.pink,
+-    Colors.pinkAccent,
+-    Colors.purple,
+-    Colors.purpleAccent,
++    Color(0xFF3E478E), // Colors.indigo,
++    Color(0xFF62E6FF), // Colors.blue,
++    Color(0xFF94eeff), // Colors.blueAccent,
++    Color(0xFFa8ffff), // Colors.teal,
++    Color(0xFFBAFFFF), // Colors.tealAccent,
++    Color(0xFF7DFFB8), // Colors.green,
++    Color(0xFFA7FFCE), // Colors.greenAccent,
++    Color(0xFFFFEDCC), // Colors.yellow,
++    Color(0xFFfffddc), // Colors.yellowAccent,
++    Color(0xFFFFD890), // Colors.orange,
++    Color(0xFFFFD890), // Colors.orangeAccent,
++    Color(0xFFFF8F6C), // Colors.red,
++    Color(0xFFFF8F6C), // Colors.redAccent,
++    Color(0xFFFF9DFB), // Colors.pink,
++    Color(0xFFFFC5FC), // Colors.pinkAccent,
++    Color(0xFF9497FF), // Colors.purple,
++    Color(0xFF7484FF), // Colors.purpleAccent,
+     Colors.blueGrey,
+     Colors.grey,
+     Colors.white,
+diff --git a/lib/utils/string_color.dart b/lib/utils/string_color.dart
+index a0dfbf5c0..b636733a0 100644
+--- a/lib/utils/string_color.dart
++++ b/lib/utils/string_color.dart
+@@ -2,14 +2,21 @@ import 'package:flutter/material.dart';
+ 
+ extension StringColor on String {
+   static final _colorCache = <String, Map<double, Color>>{};
++  static final customColors = [
++    Color(0xFF62E6FF), // Colors.blue,
++    Color(0xFF94eeff), // Colors.blueAccent,
++    Color(0xFF7DFFB8), // Colors.green,
++    Color(0xFFA7FFCE), // Colors.greenAccent,
++    Color(0xFFFFD890), // Colors.orange,
++    Color(0xFFFF9DFB), // Colors.pink,
++    Color(0xFFFFC5FC), // Colors.pinkAccent,
++    Color(0xFF9497FF), // Colors.purple,
++    Color(0xFF7484FF), // Colors.purpleAccent,
++    Color(0xFFD2BBFA), // Colors.lilac,
++  ];
+ 
+   Color _getColorLight(double light) {
+-    var number = 0.0;
+-    for (var i = 0; i < length; i++) {
+-      number += codeUnitAt(i);
+-    }
+-    number = (number % 12) * 25.5;
+-    return HSLColor.fromAHSL(0.75, number, 1, light).toColor();
++    return StringColor.customColors[length % 9];
+   }
+ 
+   Color get color {
+diff --git a/lib/widgets/avatar.dart b/lib/widgets/avatar.dart
+index fdecdb5d7..ed758e7a5 100644
+--- a/lib/widgets/avatar.dart
++++ b/lib/widgets/avatar.dart
+@@ -84,7 +84,7 @@ class Avatar extends StatelessWidget {
+                         textAlign: TextAlign.center,
+                         style: TextStyle(
+                           fontFamily: 'RobotoMono',
+-                          color: textColor ?? Colors.white,
++                          color: Color(0xFF3E478E),
+                           fontWeight: FontWeight.bold,
+                           fontSize: (size / 2.5).roundToDouble(),
+                         ),
+diff --git a/lib/widgets/navigation_rail.dart b/lib/widgets/navigation_rail.dart
+index 7cb4be43b..7d6319f32 100644
+--- a/lib/widgets/navigation_rail.dart
++++ b/lib/widgets/navigation_rail.dart
+@@ -67,7 +67,7 @@ class SpacesNavigationRail extends StatelessWidget {
+                             ),
+                             selectedIcon: const Padding(
+                               padding: EdgeInsets.all(10.0),
+-                              child: Icon(Icons.forum),
++                              child: Icon(Icons.forum, color: Color(0xff3E478E)),
+                             ),
+                             toolTip: L10n.of(context).chats,
+                             unreadBadgeFilter: (room) => true,
+@@ -122,7 +122,7 @@ class SpacesNavigationRail extends StatelessWidget {
+                     ),
+                     selectedIcon: const Padding(
+                       padding: EdgeInsets.all(10.0),
+-                      child: Icon(Icons.settings),
++                      child: Icon(Icons.settings, color: Color(0xff3E478E)),
+                     ),
+                     toolTip: L10n.of(context).settings,
+                   ),
+diff --git a/web/splash/style.css b/web/splash/style.css
+index 6654d94e6..4fd575dc0 100644
+--- a/web/splash/style.css
++++ b/web/splash/style.css
+@@ -35,11 +35,19 @@ html {
+   object-fit: cover;
+ }
+ 
++body, html {
++  background: transparent;
++}
++
++#splash {
++  display: none;
++}
++
+ @media (prefers-color-scheme: dark) {
+   body {
+     margin: 0;
+     height: 100%;
+-    background: #000000;
++    background: transparent;
+     background-size: 100% 100%;
+   }
+-}
+\ No newline at end of file
++}

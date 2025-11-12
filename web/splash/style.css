@@ -35,11 +35,19 @@ html {
   object-fit: cover;
 }
 
+body, html {
+  background: transparent;
+}
+
+#splash {
+  display: none;
+}
+
 @media (prefers-color-scheme: dark) {
   body {
     margin: 0;
     height: 100%;
-    background: #000000;
+    background: transparent;
     background-size: 100% 100%;
   }
 }

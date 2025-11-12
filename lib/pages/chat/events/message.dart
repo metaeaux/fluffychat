@@ -244,7 +244,7 @@ class Message extends StatelessWidget {
                       child: Material(
                         borderRadius:
                             BorderRadius.circular(AppConfig.borderRadius * 2),
-                        color: theme.colorScheme.surface.withAlpha(128),
+                        color: theme.colorScheme.surface.withAlpha(24),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 8.0,
@@ -658,6 +658,7 @@ class Message extends StatelessWidget {
                                                       4.0,
                                                     ),
                                                     child: Material(
+						      color: theme.colorScheme.surfaceBright,
                                                       elevation: 4,
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -665,7 +666,7 @@ class Message extends StatelessWidget {
                                                       ),
                                                       shadowColor: theme
                                                           .colorScheme.surface
-                                                          .withAlpha(128),
+                                                          .withAlpha(24),
                                                       child:
                                                           SingleChildScrollView(
                                                         scrollDirection:
@@ -931,7 +932,7 @@ class Message extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius:
                             BorderRadius.circular(AppConfig.borderRadius / 3),
-                        color: theme.colorScheme.surface.withAlpha(128),
+                        color: theme.colorScheme.surface.withAlpha(24),
                       ),
                       child: Text(
                         L10n.of(context).readUpToHere,

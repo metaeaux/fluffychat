@@ -84,7 +84,7 @@ class Avatar extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'RobotoMono',
-                          color: textColor ?? Colors.white,
+                          color: Color(0xFF3E478E),
                           fontWeight: FontWeight.bold,
                           fontSize: (size / 2.5).roundToDouble(),
                         ),

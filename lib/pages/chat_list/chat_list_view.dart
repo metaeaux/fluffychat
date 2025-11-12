@@ -16,6 +16,7 @@ class ChatListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return PopScope(
       canPop: !controller.isSearchMode && controller.activeSpaceId == null,
       onPopInvokedWithResult: (pop, _) {
@@ -53,6 +54,7 @@ class ChatListView extends StatelessWidget {
                 floatingActionButton: !controller.isSearchMode &&
                         controller.activeSpaceId == null
                     ? FloatingActionButton.extended(
+			foregroundColor: theme.colorScheme.onPrimaryContainer,
                         onPressed: () => context.go('/rooms/newprivatechat'),
                         icon: const Icon(Icons.add_outlined),
                         label: Text(

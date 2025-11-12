@@ -46,7 +46,28 @@ abstract class FluffyThemes {
   ]) {
     final colorScheme = ColorScheme.fromSeed(
       brightness: brightness,
-      seedColor: seed ?? Color(AppSettings.colorSchemeSeedInt.value),
+      seedColor: Color(AppSettings.colorSchemeSeedInt.value),
+      primary: Color(AppSettings.colorSchemePrimary.value),
+      onPrimary: Color(AppSettings.colorSchemeOnPrimary.value),
+      primaryContainer: Color(AppSettings.colorSchemePrimaryContainer.value),
+      onPrimaryContainer: brightness == Brightness.light ? Color(AppSettings.colorSchemeOnPrimaryContainer.value) : Color(AppSettings.colorSchemeOnPrimaryContainerDark.value),
+      secondary: Color(AppSettings.colorSchemeSecondary.value),
+      onSecondary: Color(AppSettings.colorSchemeOnSecondary.value),
+      secondaryContainer: Color(AppSettings.colorSchemeSecondaryContainer.value),
+      onSecondaryContainer: brightness == Brightness.light ? Color(AppSettings.colorSchemeOnSecondaryContainer.value) : Color(AppSettings.colorSchemeOnSecondaryContainerDark.value),
+      tertiary: Color(AppSettings.colorSchemeTertiary.value),
+      onTertiary: Color(AppSettings.colorSchemeOnTertiary.value),
+      tertiaryContainer: Color(AppSettings.colorSchemeTertiaryContainer.value),
+      onTertiaryContainer: Color(AppSettings.colorSchemeOnTertiaryContainer.value),
+      surface: brightness == Brightness.light ? Color(AppSettings.colorSchemeSurface.value) : Color(AppSettings.colorSchemeSurfaceDark.value),
+      surfaceBright: brightness == Brightness.light ? Color(AppSettings.colorSchemeSurfaceBright.value) : Color(AppSettings.colorSchemeSurfaceBrightDark.value),
+      surfaceDim: Color(AppSettings.colorSchemeSurfaceDim.value),
+      onSurface: brightness == Brightness.light ? Color(AppSettings.colorSchemeOnSurface.value) : Color(AppSettings.colorSchemeOnSurfaceDark.value),
+      surfaceContainer: Color(AppSettings.colorSchemeSurfaceContainer.value),
+      surfaceContainerHigh: Color(AppSettings.colorSchemeSurfaceContainerHigh.value),
+      surfaceContainerHighest: Color(AppSettings.colorSchemeSurfaceContainerHighest.value),
+      surfaceContainerLow: Color(AppSettings.colorSchemeSurfaceContainerLow.value),
+      surfaceContainerLowest: Color(AppSettings.colorSchemeSurfaceContainerLowest.value),
     );
     final isColumnMode = FluffyThemes.isColumnMode(context);
     return ThemeData(
@@ -55,10 +76,10 @@ abstract class FluffyThemes {
       brightness: brightness,
       colorScheme: colorScheme,
       dividerColor: brightness == Brightness.dark
-          ? colorScheme.surfaceContainerHighest
-          : colorScheme.surfaceContainer,
+          ? Color(0xFFD2BBFA).withAlpha(64)
+          : Color(0xFFD2BBFA),
       popupMenuTheme: PopupMenuThemeData(
-        color: colorScheme.surfaceContainerLow,
+        color: colorScheme.surfaceBright,
         iconColor: colorScheme.onSurface,
         textStyle: TextStyle(color: colorScheme.onSurface),
         shape: RoundedRectangleBorder(
@@ -92,7 +113,7 @@ abstract class FluffyThemes {
       appBarTheme: AppBarTheme(
         toolbarHeight: isColumnMode ? 72 : 56,
         shadowColor:
-            isColumnMode ? colorScheme.surfaceContainer.withAlpha(128) : null,
+            isColumnMode ? colorScheme.surfaceContainer.withAlpha(0) : null,
         surfaceTintColor: isColumnMode ? colorScheme.surface : null,
         backgroundColor: isColumnMode ? colorScheme.surface : null,
         actionsPadding:
@@ -148,17 +169,9 @@ extension on Brightness {
 }
 
 extension BubbleColorTheme on ThemeData {
-  Color get bubbleColor => brightness == Brightness.light
-      ? colorScheme.primary
-      : colorScheme.primaryContainer;
+  Color get bubbleColor => colorScheme.primary;
 
-  Color get onBubbleColor => brightness == Brightness.light
-      ? colorScheme.onPrimary
-      : colorScheme.onPrimaryContainer;
+  Color get onBubbleColor => colorScheme.onPrimary;
 
-  Color get secondaryBubbleColor => HSLColor.fromColor(
-        brightness == Brightness.light
-            ? colorScheme.tertiary
-            : colorScheme.tertiaryContainer,
-      ).withSaturation(0.5).toColor();
+  Color get secondaryBubbleColor => colorScheme.tertiary;
 }

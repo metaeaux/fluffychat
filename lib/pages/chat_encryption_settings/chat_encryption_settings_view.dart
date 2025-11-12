@@ -150,10 +150,10 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                                             : L10n.of(context).unverified,
                                     style: TextStyle(
                                       color: deviceKeys[i].verified
-                                          ? Colors.green
+                                          ? Color(0xff7DFFB8)
                                           : deviceKeys[i].blocked
-                                              ? Colors.red
-                                              : Colors.orange,
+                                              ? Color(0xffFF8F6C)
+                                              : Color(0xffFFD890),
                                     ),
                                   ),
                                   const Text(' | ID: '),

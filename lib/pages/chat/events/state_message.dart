@@ -34,7 +34,7 @@ class StateMessage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(4),
                   child: Material(
-                    color: theme.colorScheme.surface.withAlpha(128),
+                    color: theme.colorScheme.surface.withAlpha(24),
                     borderRadius:
                         BorderRadius.circular(AppConfig.borderRadius / 3),
                     child: Padding(
