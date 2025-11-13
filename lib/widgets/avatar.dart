@@ -112,7 +112,7 @@ class Avatar extends StatelessWidget {
                   ? Color(0xFF7DFFB8)
                   : presence.presence.isUnavailable
                       ? Color(0xFFFFD890)
-                      : Color(0xFF3E478E);
+                      : Color(0xFF9497FF);
               return Positioned(
                 bottom: -3,
                 right: -3,

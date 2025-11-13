@@ -318,9 +318,9 @@ extension on CachedPresence {
   LinearGradient get gradient => presence.isOnline == true
       ? LinearGradient(
           colors: [
-            Colors.green,
-            Colors.green.shade200,
-            Colors.green.shade900,
+	    Color(0x807DFFB8),
+	    Color(0x80A7FFCE),
+	    Color(0x80beffe5),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -328,18 +328,18 @@ extension on CachedPresence {
       : presence.isUnavailable
           ? LinearGradient(
               colors: [
-                Colors.yellow,
-                Colors.yellow.shade200,
-                Colors.yellow.shade900,
+                Color(0x80FFD890),
+                Color(0x80FFEDCC),
+                Color(0x80fffddc),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             )
           : LinearGradient(
               colors: [
-                Colors.grey,
-                Colors.grey.shade200,
-                Colors.grey.shade900,
+                Color(0x803E478E),
+                Color(0x80505CB4),
+                Color(0x807484FF),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
